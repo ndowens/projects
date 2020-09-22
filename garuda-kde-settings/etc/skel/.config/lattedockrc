@@ -1,0 +1,25 @@
+[KFileDialog Settings]
+Recent Files[$e]=file:$HOME/garuda.layout.latte,file:$HOME/garuda.layout.latte
+detailViewIconSize=0
+
+[PlasmaThemeExtended]
+outlineWidth=1
+
+[ScreenConnectors]
+10=HDMI-A-0
+
+[UniversalSettings]
+badges3DStyle=true
+canDisableBorders=true
+currentLayout=garuda
+downloadWindowSize=800,550
+lastNonAssignedLayout=garuda
+launchers=
+layoutsColumnWidths=121,70,69,49,103
+layoutsWindowSize=700,613
+memoryUsage=1
+metaPressAndHoldEnabled=true
+mouseSensitivity=2
+screenTrackerInterval=2500
+showInfoWindow=true
+version=1

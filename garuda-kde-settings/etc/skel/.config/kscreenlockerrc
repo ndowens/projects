@@ -1,0 +1,13 @@
+[$Version]
+update_info=kscreenlocker.upd:0.1-autolock
+
+[Daemon]
+Autolock=false
+Timeout=0
+
+[Greeter]
+Theme=com.github.librewish.garuda-dark
+WallpaperPlugin=org.kde.slideshow
+
+[Greeter][Wallpaper][org.kde.slideshow][General]
+SlidePaths=/usr/share/wallpapers

@@ -1,0 +1,11 @@
+[Added Associations]
+application/pdf=okularApplication_pdf.desktop;krita_pdf.desktop;
+
+[Default Applications]
+inode/directory=org.kde.dolphin.desktop;
+application/pdf=okularApplication_pdf.desktop;
+application/x-bittorrent=org.qbittorrent.qBittorrent.desktop;
+text/plain=org.kde.kate.desktop;
+x-scheme-handler/http=firefox.desktop;
+x-scheme-handler/https=firefox.desktop;
+x-scheme-handler/mailto=thunderbird.desktop;

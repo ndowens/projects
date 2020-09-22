@@ -1,0 +1,20 @@
+# File created by KDE Gtk Config
+# Configs for GTK2 programs 
+
+include "/usr/share/themes/WhiteSur-dark/gtk-2.0/gtkrc"
+style "user-font" 
+{
+	font_name="Noto Sans Regular"
+}
+widget_class "*" style "user-font"
+gtk-font-name="Noto Sans Regular 10"
+gtk-theme-name="WhiteSur-dark"
+gtk-icon-theme-name="Tela-circle-dark"
+gtk-fallback-icon-theme="breeze-dark"
+gtk-cursor-theme-name="breeze_cursors"
+gtk-sound-theme-name="Smooth"
+gtk-toolbar-style=GTK_TOOLBAR_ICONS
+gtk-menu-images=1
+gtk-button-images=1
+gtk-primary-button-warps-slider=0
+gtk-modules=canberra-gtk-module:gail:atk-bridge:appmenu-gtk-module

@@ -1,0 +1,14 @@
+[General]
+BrowserApplication[$e]=firefox.desktop
+ColorScheme=WhiteSurDark
+Name=WhiteSurDark
+widgetStyle=kvantum
+
+[Icons]
+Theme=Tela-circle-dark
+
+[KDE]
+ColorScheme=WhiteSurDark
+LookAndFeelPackage=com.github.librewish.garuda-dark
+widgetStyle=kvantum
+

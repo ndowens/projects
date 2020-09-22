@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-kde-settings.git
+	branch = master
+	commit = 491f0b91735c99682a811e281140d006d056b29e
+	parent = 2c30621ee70bd84d540971c6fa7e13b2b30decca
+	method = merge
+	cmdver = 0.4.1
