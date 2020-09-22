@@ -1,0 +1,100 @@
+#!/usr/bin/env php
+<?php
+
+require 'Bencode.php';
+require 'Cjdns.php';
+require 'publicKey2ipv6.php';
+
+define('PASSWORD', 'NONE');
+
+$cjdns = new Cjdns(PASSWORD, "127.0.0.1", 11234);
+
+$peers = []; $page = 0;
+do
+{
+        $res = $cjdns->call("InterfaceController_peerStats", ['page' => $page++]);
+        $peers = array_merge($peers, $res['peers']);
+} while(!empty($res['more']));
+
+$table = new table();
+
+$table->add(['Public Key', 'Ipv6', 'User', 'State', 'Last', 'Bytes In', 'Bytes Out', 'Lost', 'Ver', 'In']);
+
+foreach ($peers as $a)
+{
+	$pK   = preg_match('/.{23}([a-z0-6]{4}).+(.{6})$/', $a['addr'], $m) ? $m[1].'...'.$m[2] : '?';
+	$ip   = preg_replace('#.+:#', ':', publicKey2ipv6(explode('.', $a['addr'])[5]));
+	$ver  = preg_match('/^v(\d+)/', $a['addr'], $m) ? $m[1] : '?';
+	$date = str_replace(date(' d.m.y'), '', date('H:i:s d.m.y', $a['last']/1000));
+	$table->add([$pK, $ip, $a['user'], $a['state'], $date,
+		_h($a['bytesIn']), _h($a['bytesOut']), $a['lostPackets'],
+		$ver, $a['isIncoming']]);
+}
+
+$table->printSimple();
+
+// human readable bytes
+function _h($x)
+{
+	if ($x < 1024) return sprintf("%5.2f",    $x); $x /= 1024;
+	if ($x < 1024) return sprintf("%5.2f Kb", $x); $x /= 1024;
+	if ($x < 1024) return sprintf("%5.2f Mb", $x); $x /= 1024;
+	if ($x < 1024) return sprintf("%5.2f Gb", $x); $x /= 1024;
+	return $x;
+}
+
+
+// class for draw table data
+class table
+{
+	private $data  = [];
+	private $width = [];
+	private $cur_row   = 0;
+	public function add($a)
+	{
+		array_push($this->data, $a);
+		foreach ($a as $i => $x)
+		if (@$this->width[$i] < strlen($x))
+			$this->width[$i] = strlen($x);
+	}
+	public function printSimple()
+	{
+		$this->printLine();
+		$this->printRows(1); // header
+		$this->printLine();
+		$this->printRows();
+		$this->printLine();
+	}
+	public function printLine()
+	{
+		foreach ($this->width as $w)
+		{
+			printf("+");
+			printf($this->strdup($w+2));
+		}
+		printf("+\n");
+	}
+	public function printRows($n = NULL)
+	{
+		if (is_null($n)) $n = count($this->data);
+		for ($this->cur_row; $n && $this->cur_row<count($this->data); $this->cur_row++, $n--)
+		{
+			foreach ($this->width as $i => $w)
+			{
+				$this->printCell($this->data[$this->cur_row][$i], $w);
+			}
+			printf("|\n");
+		}
+	}
+	private function strdup($n,$x='-') { $st=''; for ($i=0;$i<$n;$i++)$st.=$x; return $st; }
+	private function printCell($data, $width)
+	{
+		if (empty($data)) $data = ''; // clear zero-value
+		if (!is_numeric($data)) // align string to center
+		{
+			$d = ($width - strlen($data)) >> 1;
+			$data .= $this->strdup($d, ' ');
+		}
+		printf("| %{$width}s ", $data);
+	}
+}

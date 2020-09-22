@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = git@github.com:ndowens/cjdns.git
+	branch = crashey
+	commit = ecd01e7681d9b7a06d2673e49fcf9a76a580cb52
+	parent = 61f715c0521511c7cc72efa97eb172f6a540313a
+	method = merge
+	cmdver = 0.4.1
