@@ -6,7 +6,7 @@
 [subrepo]
 	remote = git@github.com:ndowens/cjdns.git
 	branch = crashey
-	commit = ecd01e7681d9b7a06d2673e49fcf9a76a580cb52
-	parent = 61f715c0521511c7cc72efa97eb172f6a540313a
+	commit = 784807e6051f6d035028d7dcb88dc9d4530a965a
+	parent = a8414e16fb35774789a57d38a4b695daaacb1427
 	method = merge
 	cmdver = 0.4.1
